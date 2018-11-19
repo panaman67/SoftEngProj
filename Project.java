@@ -4,20 +4,32 @@ public class Project
 {
 	public static void main(String[] args)
 	{
-		Scanner in = new Scanner(System.in);
+		Scanner stdin = new Scanner(System.in);
 		Inventory inv = new Inventory();
-		Item fruit = new Item("Apple", 2.98);
+		int selected = -1;
 
-		int choice = -1;
-
-		inv.put(fruit, 3);
-		
 		displayMenu();
-		System.out.println(inv);
+		System.out.print("Choice: ");
+		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
+
+		switch (selected)
+		{
+			case 0:
+				CustomerInterface.checkout(inv);
+				break;
+			case 1:
+				ManagerInterface.test();
+				break;
+			case 2:
+				break;
+		}
+
+		System.out.println("\nThank you! Please come again!");
 	}
 
 	static void displayMenu()
 	{
-		System.out.println("1: Start Checkout");
+		System.out.println("0: Start Checkout");
+		System.out.println("1: Manager Options");
 	}
 }
