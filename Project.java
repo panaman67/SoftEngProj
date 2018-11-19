@@ -20,21 +20,37 @@ public class Project
 		
 		displayMenu();
 		System.out.print("Choice: ");
-
-		do
-		{
-			selected = Helpers.extractUnsignedInt(stdin.nextLine());
-		} while (selected != 1);
-
 		
 
-		System.out.println(inv);
+		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 4);
+		switch (selected)
+		{
+			case  0:
+				System.out.println(inv);
+				break;
+			case 1:
+				customerCheckout();
+				break;
+			case 2:
+				System.out.print("Enter item ID: ");
+				break;
+			case 3:
+				break inputloop;
+		}
+
+		System.out.println("\nThank you! Please come again!");
 	}
 
 	static void displayMenu()
 	{
 		System.out.println("1: Start Checkout");
+		System.out.println("2: Manager Options");
 	}
 
-	static void 
+	static void customerCheckout(Inventory inv)
+	{
+		ArrayList cart = new ArrayList<Item>();
+		System.out.println(inv);
+
+	}
 }

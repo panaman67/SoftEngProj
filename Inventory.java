@@ -5,12 +5,12 @@ public class Inventory extends HashMap<Item, Integer>
 	public String toString()
 	{
 		String buff = "";
-		System.out.println("      Current Inventory       ");
-		System.out.println("------------------------------");
+		buff += "      Current Inventory       \n";
+		buff += "------------------------------\n";
 
 		for (Entry<Item, Integer> item : this.entrySet())
 		{
-			buff += item.getKey().name + " " + item.getValue();
+			buff += item.getKey().name + " " + item.getValue() + "\n";
 		}
 		return buff;
 	}
