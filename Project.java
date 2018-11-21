@@ -6,25 +6,23 @@ public class Project
 	{
 		Scanner stdin = new Scanner(System.in);
 		Inventory inv = new Inventory();
-		int selected = -1;
 
+		int selected = -1;
 		displayMenu();
 		System.out.print("Choice: ");
-		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
 
+		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
 		switch (selected)
 		{
 			case 0:
-				CustomerInterface.checkout(inv);
+				Customer.checkout(inv);
 				break;
 			case 1:
-				ManagerInterface.test();
+				//Manager.test();
 				break;
 			case 2:
 				break;
 		}
-
-		System.out.println("\nThank you! Please come again!");
 	}
 
 	static void displayMenu()
