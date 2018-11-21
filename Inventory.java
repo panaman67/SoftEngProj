@@ -13,9 +13,9 @@ public class Inventory extends ArrayList<Item>
 	public String toString()
 	{
 		String buff = "------Inventory-----\n";
-
 		for (Item item : this)
 			buff += item;
+
 		return buff;
 	}
 }
