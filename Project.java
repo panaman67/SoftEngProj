@@ -5,7 +5,7 @@ public class Project
 	public static void main(String[] args)
 	{
 		Scanner stdin = new Scanner(System.in);
-		Inventory inv = new Inventory();
+		InvGlobl inv = InvGlobl.getInstance();
 
 		int selected = -1;
 		displayMenu();
@@ -15,7 +15,7 @@ public class Project
 		switch (selected)
 		{
 			case 0:
-				Customer.checkout(inv);
+				Customer.checkout();
 				break;
 			case 1:
 				//Manager.test();

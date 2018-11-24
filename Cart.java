@@ -1,12 +1,19 @@
 import java.util.*;
 
-public class Cart extends ArrayList<Item>
+public class Cart
 {
+	public ArrayList<Item> items;
+
+	public Cart()
+	{
+		items = new ArrayList<Item>();
+	}
+
 	public String toString()
 	{
 		String buff = "------Current Cart------\n";
 
-		for (Item item : this)
+		for (Item item : this.items)
 		{
 			buff += item;
 		}
