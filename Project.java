@@ -5,7 +5,7 @@ public class Project
 	public static void main(String[] args)
 	{
 		Scanner stdin = new Scanner(System.in);
-		InvGlobl inv = InvGlobl.getInstance();
+		Inventory inv = Inventory.getInstance();
 
 		int selected = -1;
 		displayMenu();

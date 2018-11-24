@@ -9,7 +9,7 @@ public class Customer
 		// after every item scanned
 		// prompt for next item, cancel, or pay
 		Scanner stdin = new Scanner(System.in);
-		InvGlobl inv = InvGlobl.getInstance();
+		Inventory inv = Inventory.getInstance();
 		Cart cart = new Cart();
 
 		//float total = 0f;
@@ -46,7 +46,7 @@ public class Customer
 	float scanItem(Cart cart)
 	{
 		Scanner stdin = new Scanner(System.in);
-		InvGlobl inv = InvGlobl.getInstance();
+		Inventory inv = Inventory.getInstance();
 		int choice;
 
 		do
