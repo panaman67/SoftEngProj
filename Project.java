@@ -5,26 +5,24 @@ public class Project
 	public static void main(String[] args)
 	{
 		Scanner stdin = new Scanner(System.in);
-		Inventory inv = new Inventory();
-		int selected = -1;
+		Inventory inv = Inventory.getInstance();
 
+		int selected = -1;
 		displayMenu();
 		System.out.print("Choice: ");
-		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
 
+		selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
 		switch (selected)
 		{
 			case 0:
-				CustomerInterface.checkout(inv);
+				Customer.checkout();
 				break;
 			case 1:
-				ManagerInterface.test();
+				//Manager.test();
 				break;
 			case 2:
 				break;
 		}
-
-		System.out.println("\nThank you! Please come again!");
 	}
 
 	static void displayMenu()

@@ -1,24 +1,70 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 
-public class Inventory extends HashMap<Item, Integer>
+public class Inventory
 {
-	public Inventory()
+	private static Inventory INSTANCE;
+
+	public ArrayList<String>  names;
+	public ArrayList<Float>   prices;
+	public ArrayList<Integer> amounts;
+
+	private Inventory()
 	{
-		this.put(new Item("Apple", 2.98f), 10);
-		this.put(new Item("Vodka", 10.00f), 10);
-		this.put(new Item("Pie", 13.23f), 10);
-		this.put(new Item("Bread", 5.00f), 10);
+		names = new ArrayList<String>();
+		prices = new ArrayList<Float>();
+		amounts = new ArrayList<Integer>();
+
+		names.add("Apple");
+		names.add("Juice");
+		names.add("Pie");
+		names.add("Bread");
+
+		prices.add(2.34f);
+		prices.add(5.43f);
+		prices.add(11.32f);
+		prices.add(4.13f);
+
+		amounts.add(10);
+		amounts.add(10);
+		amounts.add(10);
+		amounts.add(10);
+	}
+
+	public static Inventory getInstance()
+	{
+		if (INSTANCE == null)
+			INSTANCE = new Inventory();
+		return INSTANCE;
+	}
+
+	public String getItemName(int index)
+	{
+		return names.get(index);
+	}
+
+	public float getItemPrice(int index)
+	{
+		return prices.get(index);
+	}
+
+	public int getItemAmount(int index)
+	{
+		return amounts.get(index);
+	}
+
+	public void restock()
+	{
+		// Ask manager what to restock
 	}
 
 	public String toString()
 	{
-		String buff = "";
-		buff += "     Current Inventory     \n";
-		buff += "---------------------------\n";
+		int num = 1;
+		String buff = "-------Inventory-------\n";
 
-		for (Entry<Item, Integer> item : this.entrySet())
+		for (int i = 0; i < names.size(); i++)
 		{
-			buff += String.format("%-10s  %15d%n", item.getKey().name, item.getValue());
+			buff += String.format("%d: %-10s%10.2f%n", num++, names.get(i), prices.get(i));
 		}
 		return buff;
 	}
