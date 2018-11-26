@@ -2,15 +2,12 @@ import java.util.*;
 
 public class Customer
 {
-	public static float total = 0f;  // FIXME: make non-static
-
 	static void checkout()
 	{
-		// after every item scanned
-		// prompt for next item, cancel, or pay
 		Scanner stdin = new Scanner(System.in);
 		Inventory inv = Inventory.getInstance();
 		Cart cart = new Cart();
+		float total;
 
 		System.out.println(inv);
 		char action;
@@ -23,14 +20,17 @@ public class Customer
 			switch (action)
 			{
 				case 'S':
-					total += scanItem();  // FIXME: remove cart param
+					total += scanItem();
+					System.out.println(Cart.items);
+					System.out.println(String.format("Total: %.2f", total));
+
 					break;
 				case 'P':
 					//pay(total); ??
 					break;
 				case 'C':
 					//cancel transaction
-				System.out.println("Transaction Canceled");
+					System.out.println("Transaction Canceled");
 					return;
 				default:
 					System.out.println("Not a valid option");
@@ -44,22 +44,19 @@ public class Customer
 		Inventory inv = Inventory.getInstance();
 		int choice;
 
-		System.out.print("What item to scan: ");
-		choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
-
-		try
+		while (true)
 		{
-			Cart.items.add(inv.getItemName(choice - 1));
-			total += inv.getItemPrice(choice - 1);
+			try
+			{
+				System.out.print("What item to scan: ");
+				choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+				Cart.items.add(inv.getItemName(choice - 1));
+				return inv.getItemPrice(choice - 1);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				continue;
+			}
 		}
-		catch (Exception e)
-		{
-			//return -1f;
-		}
-
-		System.out.println(Cart.items);
-		System.out.println(String.format("Total: %.2f", total));
-
-		return total;
 	}
 }
