@@ -1,2 +1,4 @@
 # SoftEngProj
-Software Engineering project
+Software Engineering project:
+
+Implements Self checkout system
