@@ -4,9 +4,9 @@ public class Inventory
 {
 	private static Inventory INSTANCE;
 
-	ArrayList<String>  names;
-	ArrayList<Float>   prices;
-	ArrayList<Integer> amounts;
+	public ArrayList<String>  names;
+	public ArrayList<Float>   prices;
+	public ArrayList<Integer> amounts;
 
 	private Inventory()
 	{
