@@ -54,7 +54,7 @@ public class Inventory
 
 	public void restock(String item)
 	{
-
+		// Ask manager what to restock
 	}
 
 	public String toString()

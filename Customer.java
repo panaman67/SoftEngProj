@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Customer
 {
-	public float total = 0f;
+	public static float total = 0f;  // FIXME: make non-static
 
 	static void checkout()
 	{
@@ -12,72 +12,54 @@ public class Customer
 		Inventory inv = Inventory.getInstance();
 		Cart cart = new Cart();
 
-		//float total = 0f;
-		int choice = -1;
-
 		System.out.println(inv);
-
 		char action;
-
-		do
+		while (true)
 		{
 			System.out.print("(S)can/(P)ay/(C)ancel: ");
 			action = stdin.nextLine().charAt(0);
-			action = Character.toLowerCase(action);
+			action = Character.toUpperCase(action);
 
 			switch (action)
 			{
-				case 's':
-					//scanItem(cart);    MAKE CART GLOBAL SINGLETON
+				case 'S':
+					total += scanItem();  // FIXME: remove cart param
 					break;
-				case 'p':
-					//pay for cart
+				case 'P':
+					//pay(total); ??
 					break;
-				case 'c':
-					//cancel payment
+				case 'C':
+					//cancel transaction
+				System.out.println("Transaction Canceled");
 					return;
 				default:
 					System.out.println("Not a valid option");
-					break;
 			}
-		} while (true);
+		}
 	}
 
-	float scanItem(Cart cart)
+	static float scanItem()
 	{
 		Scanner stdin = new Scanner(System.in);
 		Inventory inv = Inventory.getInstance();
 		int choice;
 
-		do
+		System.out.print("What item to scan: ");
+		choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+
+		try
 		{
-			System.out.print("What item to scan (0 to exit): ");
-			choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+			Cart.items.add(inv.getItemName(choice - 1));
+			total += inv.getItemPrice(choice - 1);
+		}
+		catch (Exception e)
+		{
+			//return -1f;
+		}
 
-			// REFACTOR INTO TRY/CATCH
-			switch (choice)
-			{
-				case 1:
-					//cart.items.add(inv.get(choice - 1));
-					//total += inv.get(choice - 1).price;
-					break;
-				case 2:
-					//cart.items.add(inv.get(choice - 1));
-					//total += inv.get(choice - 1).price;
-					break;
-				case 3:
-					//cart.items.add(inv.get(choice - 1));
-					//total += inv.get(choice - 1).price;
-					break;
-				case 4:
-					//cart.items.add(inv.get(choice - 1));
-					//total += inv.get(choice - 1).price;
-					break;
-			}
+		System.out.println(Cart.items);
+		System.out.println(String.format("Total: %.2f", total));
 
-			System.out.println(cart);
-			System.out.println(String.format("Total: %.2f", total));
-		} while (choice > 0);
 		return total;
 	}
 }
