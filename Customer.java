@@ -49,8 +49,14 @@ public class Customer
 			{
 				System.out.print("What item to scan: ");
 				choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
-				Cart.items.add(inv.getItemName(choice - 1));
-				return inv.getItemPrice(choice - 1);
+				if (inv.getItemAmount(choice - 1) > 0)
+				{
+					Cart.items.add(inv.getItemName(choice - 1));
+					inv.amounts.set(choice - 1, inv.getItemAmount(choice - 1) - 1);
+					return inv.getItemPrice(choice - 1);
+				}
+				System.out.println("Item out of stock!");
+				return 0f;
 			}
 			catch (IndexOutOfBoundsException e)
 			{
