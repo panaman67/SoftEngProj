@@ -52,7 +52,7 @@ public class Inventory
 		return amounts.get(index);
 	}
 
-	public void restock(String item)
+	public void restock()
 	{
 		// Ask manager what to restock
 	}

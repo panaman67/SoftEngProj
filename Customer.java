@@ -7,10 +7,10 @@ public class Customer
 		Scanner stdin = new Scanner(System.in);
 		Inventory inv = Inventory.getInstance();
 		Cart cart = new Cart();
-		float total;
-
-		System.out.println(inv);
+		float total = 0f;
 		char action;
+		
+		System.out.println(inv);
 		while (true)
 		{
 			System.out.print("(S)can/(P)ay/(C)ancel: ");
@@ -23,7 +23,6 @@ public class Customer
 					total += scanItem();
 					System.out.println(Cart.items);
 					System.out.println(String.format("Total: %.2f", total));
-
 					break;
 				case 'P':
 					//pay(total); ??
