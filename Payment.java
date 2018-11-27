@@ -6,7 +6,7 @@ public class Payment
 
 	public static Type type = Type.NONE;
 
-	static void payWithCash(float total)
+	static boolean payWithCash(float total)
 	{
 		Scanner stdin = new Scanner(System.in);
 		float payment = 0f;
@@ -16,10 +16,13 @@ public class Payment
 
 		while (remaining > 0)
 		{
-			System.out.print("Deposit cash: ");
+			System.out.print("Deposit cash or enter '0' to cancel: ");
 			try
 			{
 				payment = stdin.nextFloat();
+				if(payment == 0){
+					return false;
+				}
 				remaining -= (int)(payment * 100);
 				System.out.println(String.format("Current total: $%.2f", (float)remaining / 100));
 			}
@@ -29,13 +32,48 @@ public class Payment
 			}
 		}
 		if (remaining < 0)
-			System.out.println(String.format("Cash back is: %.2f", (float)-remaining));
+			System.out.println(String.format("Cash back is: %.2f", (float)-remaining/100));
 		System.out.println("Thank you for shopping with us! Have a nice day!");
+		return true;
 	}
 
-	static void payWithCard(float total)
+	static boolean payWithCard(float total)
 	{
-		System.out.println("Processing payment....");
-		System.out.println("Payment completed. Have a nice day");
+		Scanner in = new Scanner(System.in);
+		String cardNum, pin;
+
+		System.out.println("Please input your card number, or enter 0 to cancel: ");
+		cardNum = in.nextLine();
+		if(cardNum.equals("0"))
+			return false;
+
+		//check if card is debit
+		if(cardNum.charAt(0) == '1'){
+			System.out.println("Please enter your PIN: ");
+			pin = in.nextLine();
+			int authcode = AuthorizationCenter.authorize(cardNum, pin);
+			if(authcode == 0){
+				System.out.println("Card is not accepted, please enter new payment");
+				return Customer.payBill(total);
+			}
+			else{
+				System.out.println("Payment accepted, printing receipt!");
+				System.out.println(cardNum.substring(11) + Integer.toString(authcode) + "\n\n");
+				return true;
+			}
+		}
+		else{
+			int authcode = AuthorizationCenter.authorize(cardNum);
+			if(authcode == 0){
+				System.out.println("Card declined, ejecting");
+				return false;
+			}
+			else{
+				System.out.println("Payment accepted, printing receipt!");
+				System.out.println(cardNum.substring(11) + Integer.toString(authcode) + "\n\n");
+				return true;
+			}
+
+		}
 	}
 }
