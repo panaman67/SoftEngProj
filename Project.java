@@ -21,6 +21,9 @@ public class Project
 					Restock.restock();
 					break;
 				case 2:
+					Manager.menu();
+					break;
+				case 3:
 					return;
 			}
 		}
@@ -30,5 +33,7 @@ public class Project
 	{
 		System.out.println("0: Start Checkout");
 		System.out.println("1: Restock Inventory");
+		System.out.println("2: Manager Menu");
+		System.out.println("3: Exit");
 	}
 }
