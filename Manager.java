@@ -26,7 +26,7 @@ public class Manager {
                     //Print option
                     break;
                 case 3:
-                    //Print option
+                    Timer.printInventory();
                     break;
                 default:
                     System.out.println("Input not valid, try again");
