@@ -3,7 +3,6 @@ import java.util.*;
 public class Cart
 {
 	public static ArrayList<String> items;
-	public static float total;
 
 	public Cart()
 	{
