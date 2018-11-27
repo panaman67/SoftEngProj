@@ -11,22 +11,25 @@ public class Payment
 		Scanner stdin = new Scanner(System.in);
 		float payment = 0f;
 
-		while (total > 0.009)
+		int remaining = (int)(total * 100);
+		System.out.println(String.format("Total: %.2f", (float)remaining / 100));
+
+		while (remaining > 0)
 		{
 			System.out.print("Deposit cash: ");
 			try
 			{
 				payment = stdin.nextFloat();
-				total -= payment;
-				System.out.println(String.format("Current total: $%.2f", total));
+				remaining -= (int)(payment * 100);
+				System.out.println(String.format("Current total: $%.2f", (float)remaining / 100));
 			}
 			catch (NumberFormatException nfe)
 			{
 				System.out.println("Incorrect format");
 			}
 		}
-		if (total < 0)
-			System.out.println("Cash back is: " + -total);
+		if (remaining < 0)
+			System.out.println(String.format("Cash back is: %.2f", (float)-remaining));
 		System.out.println("Thank you for shopping with us! Have a nice day!");
 	}
 

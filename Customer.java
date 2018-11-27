@@ -69,9 +69,18 @@ public class Customer
 		Scanner stdin = new Scanner(System.in);
 		System.out.println(String.format("Your total bill is: $%.2f", total));
 		System.out.print("How would you like to pay (card/cash): ");
-		if (stdin.nextLine().toUpperCase().equals("CASH"))
+		while (true)
 		{
-			Payment.payWithCash(total);
+			if (stdin.nextLine().toUpperCase().equals("CASH"))
+			{
+				Payment.payWithCash(total);
+				break;
+			}
+			else if (stdin.nextLine().toUpperCase().equals("CARD"))
+			{
+				Payment.payWithCard(total);
+				break;
+			}
 		}
 	}
 }
