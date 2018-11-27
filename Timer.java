@@ -30,10 +30,10 @@ public class Timer {
             HashMap<String, Integer> map = prepareItemData();
 
             for(String s : map.keySet()){
-                out.printf("%s sold: %d", s, map.get(s));
+                out.printf("%s sold: %d\n", s, map.get(s));
             }
 
-            out.printf("Total revenue: $%.2f", prepareTotals());
+            out.printf("Total revenue: $%.2f\n", prepareTotals());
 
             out.close();
 
