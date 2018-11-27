@@ -81,17 +81,12 @@ public class Customer
 			String answer = stdin.nextLine().toUpperCase();
 			if (answer.equals("CASH"))
 			{
-				if(Payment.payWithCash(total)){
-					return true;
-				}
-				else{
-					return false;
-				}
+				return Payment.payWithCash(total);
+
 			}
 			else if (answer.equals("CARD"))
 			{
-				Payment.payWithCard(total);
-				break;
+				return Payment.payWithCard(total);
 			}
 		}
 	}
