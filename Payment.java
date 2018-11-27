@@ -35,6 +35,7 @@ public class Payment
 
 	static void payWithCard(float total)
 	{
-
+		System.out.println("Processing payment....");
+		System.out.println("Payment completed. Have a nice day");
 	}
 }

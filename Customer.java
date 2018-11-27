@@ -68,15 +68,16 @@ public class Customer
 	{
 		Scanner stdin = new Scanner(System.in);
 		System.out.println(String.format("Your total bill is: $%.2f", total));
-		System.out.print("How would you like to pay (card/cash): ");
 		while (true)
 		{
-			if (stdin.nextLine().toUpperCase().equals("CASH"))
+			System.out.print("How would you like to pay (card/cash): ");
+			String answer = stdin.nextLine().toUpperCase();
+			if (answer.equals("CASH"))
 			{
 				Payment.payWithCash(total);
 				break;
 			}
-			else if (stdin.nextLine().toUpperCase().equals("CARD"))
+			else if (answer.equals("CARD"))
 			{
 				Payment.payWithCard(total);
 				break;
