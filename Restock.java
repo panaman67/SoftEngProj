@@ -69,4 +69,26 @@ public class Restock {
         }
     }
 
+    private static void newItem() {
+
+        Scanner stdin = new Scanner(System.in);
+        Inventory inv = Inventory.getInstance();
+        String name;
+        int quantity;
+        float price;
+
+            System.out.print("Name of new item: ");
+            name = stdin.nextLine();
+
+            System.out.print("How many to add: ");
+            quantity = stdin.nextInt();
+
+            System.out.print("Price of item: ");
+            price = stdin.nextFloat();
+
+            inv.names.add(name);
+            inv.amounts.add(quantity);
+            inv.prices.add(price);
+
+    }
 }
