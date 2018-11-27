@@ -25,10 +25,9 @@ public class Customer
 					System.out.println(String.format("Total: %.2f", total));
 					break;
 				case 'P':
-					//pay(total); ??
-					break;
+					payBill(total);
+					return;
 				case 'C':
-					//cancel transaction
 					System.out.println("Transaction Canceled");
 					return;
 				default:
@@ -61,6 +60,27 @@ public class Customer
 			catch (IndexOutOfBoundsException e)
 			{
 				continue;
+			}
+		}
+	}
+
+	static void payBill(float total)
+	{
+		Scanner stdin = new Scanner(System.in);
+		System.out.println(String.format("Your total bill is: $%.2f", total));
+		while (true)
+		{
+			System.out.print("How would you like to pay (card/cash): ");
+			String answer = stdin.nextLine().toUpperCase();
+			if (answer.equals("CASH"))
+			{
+				Payment.payWithCash(total);
+				break;
+			}
+			else if (answer.equals("CARD"))
+			{
+				Payment.payWithCard(total);
+				break;
 			}
 		}
 	}

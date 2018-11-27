@@ -1,8 +1,9 @@
 import java.util.*;
 
-public class Restock {
-
-    static void restock(){
+public class Restock
+{
+    static void restock()
+    {
 
         Scanner in = new Scanner(System.in);
         Inventory inv = Inventory.getInstance();
@@ -10,8 +11,8 @@ public class Restock {
 
         System.out.println(inv);
 
-        while(true){
-
+        while(true)
+        {
             System.out.println("(S)can/(N)ew Item/(E)nd");
             action = in.nextLine().charAt(0);
             action = Character.toUpperCase(action);
@@ -29,14 +30,12 @@ public class Restock {
                     return;
                 default:
                     System.out.println("Choice not valid, please try again.");
-
             }
         }
-
     }
 
-    private static void scanItem(){
-
+    private static void scanItem()
+    {
         Scanner stdin = new Scanner(System.in);
         Inventory inv = Inventory.getInstance();
         int item, amount;
@@ -49,7 +48,8 @@ public class Restock {
                 item = Helpers.extractInt(stdin.nextLine(), inv.names.size());
                 if (inv.getItemName(item - 1).length() != 0 )
                 {
-                    try {
+                    try
+                    {
                         System.out.print("How many you want to add: ");
                         amount = stdin.nextInt();
                         stdin.nextLine();
@@ -57,7 +57,8 @@ public class Restock {
                         inv.amounts.set(item - 1, inv.getItemAmount(item - 1) + amount);
                         return;
                     }
-                    catch (IndexOutOfBoundsException e){
+                    catch (IndexOutOfBoundsException e)
+                    {
                         continue;
                     }
                 }
@@ -70,28 +71,28 @@ public class Restock {
         }
     }
 
-    private static void newItem() {
-
+    private static void newItem()
+    {
         Scanner stdin = new Scanner(System.in);
         Inventory inv = Inventory.getInstance();
         String name;
         int quantity;
         float price;
 
-            System.out.print("Name of new item: ");
-            name = stdin.nextLine();
 
-            System.out.print("How many to add: ");
-            quantity = stdin.nextInt();
-            stdin.nextLine();
+        System.out.print("Name of new item: ");
+        name = stdin.nextLine();
 
-            System.out.print("Price of item: ");
-            price = stdin.nextFloat();
-            stdin.nextLine();
+        System.out.print("How many to add: ");
+        quantity = stdin.nextInt();
+        stdin.nextLine();
 
-            inv.names.add(name);
-            inv.amounts.add(quantity);
-            inv.prices.add(price);
+        System.out.print("Price of item: ");
+        price = stdin.nextFloat();
 
+
+        inv.names.add(name);
+        inv.amounts.add(quantity);
+        inv.prices.add(price);
     }
 }
