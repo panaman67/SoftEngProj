@@ -89,6 +89,7 @@ public class Restock
 
         System.out.print("Price of item: ");
         price = stdin.nextFloat();
+        stdin.nextLine();
 
 
         inv.names.add(name);

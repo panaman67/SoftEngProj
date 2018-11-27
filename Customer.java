@@ -6,6 +6,7 @@ public class Customer
 	{
 		Scanner stdin = new Scanner(System.in);
 		Inventory inv = Inventory.getInstance();
+		TransactionHistory hist = TransactionHistory.getInstance();
 		Cart cart = new Cart();
 		float total = 0f;
 		char action;
@@ -26,6 +27,10 @@ public class Customer
 					break;
 				case 'P':
 					payBill(total);
+					for(String item : Cart.items){
+						hist.items.add(item);
+					}
+					hist.totals.add(total);
 					return;
 				case 'C':
 					System.out.println("Transaction Canceled");

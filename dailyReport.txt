@@ -1,0 +1,3 @@
+Apples sold: 1
+Banana sold: 1
+Total revenue: $23.22

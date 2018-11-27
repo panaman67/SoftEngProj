@@ -23,7 +23,6 @@ public class Inventory
 			Scanner in = new Scanner(input);
 			while(in.hasNextLine()){
 				item = in.nextLine();
-				System.out.println(item);
 				String[] itemInfo = item.split("/");
 
 				names.add(itemInfo[0]);

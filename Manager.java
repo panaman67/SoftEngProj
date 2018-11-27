@@ -23,7 +23,7 @@ public class Manager {
                     viewOrUpdate();
                     break;
                 case 2:
-                    //Print option
+                    Timer.printRevenue();
                     break;
                 case 3:
                     Timer.printInventory();
