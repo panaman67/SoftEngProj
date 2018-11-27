@@ -12,7 +12,7 @@ public class Project
 			displayMenu();
 			System.out.print("Choice: ");
 
-			selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
+			selected = Helpers.extractUnsignedInt(stdin.nextLine(), 3);
 			switch (selected) {
 				case 0:
 					Customer.checkout();
@@ -24,7 +24,7 @@ public class Project
 					Manager.menu();
 					break;
 				case 3:
-					return;
+					System.exit(0);
 			}
 		}
 	}
