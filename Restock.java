@@ -19,8 +19,7 @@ public class Restock {
             switch (action)
             {
                 case 'S':
-                    scanitem();
-                    System.out.println("Item added");
+                    scanItem();
                     break;
                 case 'N':
                     newItem();
@@ -34,6 +33,40 @@ public class Restock {
             }
         }
 
+    }
+
+    private static void scanItem(){
+
+        Scanner stdin = new Scanner(System.in);
+        Inventory inv = Inventory.getInstance();
+        int choice;
+
+        while (true)
+        {
+            try
+            {
+                System.out.print("What item to scan: ");
+                choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+                if (inv.getItemName(choice - 1).length() != 0 )
+                {
+                    try {
+                        System.out.print("How many you want to add: ");
+                        choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+
+                        inv.amounts.set(choice - 1, inv.getItemAmount(choice - 1) + choice);
+                        return;
+                    }
+                    catch (IndexOutOfBoundsException e){
+                        continue;
+                    }
+                }
+                System.out.println("Not valid item");
+            }
+            catch (IndexOutOfBoundsException e)
+            {
+                continue;
+            }
+        }
     }
 
 }
