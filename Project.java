@@ -18,7 +18,7 @@ public class Project
 				Customer.checkout();
 				break;
 			case 1:
-				//Manager.test();
+				Restock.restock();
 				break;
 			case 2:
 				break;
@@ -28,6 +28,6 @@ public class Project
 	static void displayMenu()
 	{
 		System.out.println("0: Start Checkout");
-		System.out.println("1: Manager Options");
+		System.out.println("1: Restock Inventory");
 	}
 }
