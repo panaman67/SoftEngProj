@@ -6,7 +6,7 @@ public class Payment
 
 	public static Type type = Type.NONE;
 
-	static void payWithCash(float total)
+	static boolean payWithCash(float total)
 	{
 		Scanner stdin = new Scanner(System.in);
 		float payment = 0f;
@@ -16,10 +16,13 @@ public class Payment
 
 		while (remaining > 0)
 		{
-			System.out.print("Deposit cash: ");
+			System.out.print("Deposit cash or enter '0' to cancel: ");
 			try
 			{
 				payment = stdin.nextFloat();
+				if(payment == 0){
+					return false;
+				}
 				remaining -= (int)(payment * 100);
 				System.out.println(String.format("Current total: $%.2f", (float)remaining / 100));
 			}
@@ -29,13 +32,15 @@ public class Payment
 			}
 		}
 		if (remaining < 0)
-			System.out.println(String.format("Cash back is: %.2f", (float)-remaining));
+			System.out.println(String.format("Cash back is: %.2f", (float)-remaining/100));
 		System.out.println("Thank you for shopping with us! Have a nice day!");
+		return true;
 	}
 
-	static void payWithCard(float total)
+	static boolean payWithCard(float total)
 	{
 		System.out.println("Processing payment....");
 		System.out.println("Payment completed. Have a nice day");
+		return true;
 	}
 }
