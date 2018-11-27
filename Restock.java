@@ -82,9 +82,11 @@ public class Restock {
 
             System.out.print("How many to add: ");
             quantity = stdin.nextInt();
+            stdin.nextLine();
 
             System.out.print("Price of item: ");
             price = stdin.nextFloat();
+            stdin.nextLine();
 
             inv.names.add(name);
             inv.amounts.add(quantity);
