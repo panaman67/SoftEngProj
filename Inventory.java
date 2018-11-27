@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 public class Inventory
 {
@@ -14,20 +16,24 @@ public class Inventory
 		prices = new ArrayList<Float>();
 		amounts = new ArrayList<Integer>();
 
-		names.add("Apple");
-		names.add("Juice");
-		names.add("Pie");
-		names.add("Bread");
+		String item;
 
-		prices.add(2.34f);
-		prices.add(5.43f);
-		prices.add(11.32f);
-		prices.add(4.13f);
+		try{
+			File input = new File("inventoryReport.txt");
+			Scanner in = new Scanner(input);
+			while(in.hasNextLine()){
+				item = in.nextLine();
+				System.out.println(item);
+				String[] itemInfo = item.split("/");
 
-		amounts.add(10);
-		amounts.add(10);
-		amounts.add(10);
-		amounts.add(10);
+				names.add(itemInfo[0]);
+				amounts.add(Integer.parseInt(itemInfo[1]));
+				prices.add(Float.parseFloat(itemInfo[2]));
+			}
+			in.close();
+		}
+		catch (IOException e){
+		}
 	}
 
 	public static Inventory getInstance()

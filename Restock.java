@@ -38,22 +38,23 @@ public class Restock
     {
         Scanner stdin = new Scanner(System.in);
         Inventory inv = Inventory.getInstance();
-        int choice;
+        int item, amount;
 
         while (true)
         {
             try
             {
                 System.out.print("What item to scan: ");
-                choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
-                if (inv.getItemName(choice - 1).length() != 0 )
+                item = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+                if (inv.getItemName(item - 1).length() != 0 )
                 {
                     try
                     {
                         System.out.print("How many you want to add: ");
-                        choice = Helpers.extractInt(stdin.nextLine(), inv.names.size());
+                        amount = stdin.nextInt();
+                        stdin.nextLine();
 
-                        inv.amounts.set(choice - 1, inv.getItemAmount(choice - 1) + choice);
+                        inv.amounts.set(item - 1, inv.getItemAmount(item - 1) + amount);
                         return;
                     }
                     catch (IndexOutOfBoundsException e)
@@ -78,14 +79,17 @@ public class Restock
         int quantity;
         float price;
 
+
         System.out.print("Name of new item: ");
         name = stdin.nextLine();
 
         System.out.print("How many to add: ");
         quantity = stdin.nextInt();
+        stdin.nextLine();
 
         System.out.print("Price of item: ");
         price = stdin.nextFloat();
+
 
         inv.names.add(name);
         inv.amounts.add(quantity);

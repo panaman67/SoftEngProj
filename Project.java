@@ -12,7 +12,7 @@ public class Project
 			displayMenu();
 			System.out.print("Choice: ");
 
-			selected = Helpers.extractUnsignedInt(stdin.nextLine(), 2);
+			selected = Helpers.extractUnsignedInt(stdin.nextLine(), 3);
 			switch (selected) {
 				case 0:
 					Customer.checkout();
@@ -21,7 +21,10 @@ public class Project
 					Restock.restock();
 					break;
 				case 2:
-					return;
+					Manager.menu();
+					break;
+				case 3:
+					System.exit(0);
 			}
 		}
 	}
@@ -30,5 +33,7 @@ public class Project
 	{
 		System.out.println("0: Start Checkout");
 		System.out.println("1: Restock Inventory");
+		System.out.println("2: Manager Menu");
+		System.out.println("3: Exit");
 	}
 }
