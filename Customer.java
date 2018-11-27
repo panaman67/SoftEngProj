@@ -26,12 +26,14 @@ public class Customer
 					System.out.println(String.format("Total: %.2f", total));
 					break;
 				case 'P':
-					payBill(total);
-					for(String item : Cart.items){
-						hist.items.add(item);
+					if(payBill(total)){
+						for(String item : Cart.items){
+							hist.items.add(item);
+						}
+						hist.totals.add(total);
+						return;
 					}
-					hist.totals.add(total);
-					return;
+
 				case 'C':
 					System.out.println("Transaction Canceled");
 					return;
@@ -69,7 +71,7 @@ public class Customer
 		}
 	}
 
-	static void payBill(float total)
+	static boolean payBill(float total)
 	{
 		Scanner stdin = new Scanner(System.in);
 		System.out.println(String.format("Your total bill is: $%.2f", total));
@@ -79,8 +81,12 @@ public class Customer
 			String answer = stdin.nextLine().toUpperCase();
 			if (answer.equals("CASH"))
 			{
-				Payment.payWithCash(total);
-				break;
+				if(Payment.payWithCash(total)){
+					return true;
+				}
+				else{
+					return false;
+				}
 			}
 			else if (answer.equals("CARD"))
 			{
