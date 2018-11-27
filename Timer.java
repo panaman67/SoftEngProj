@@ -7,7 +7,7 @@ public class Timer {
             PrintWriter out = new PrintWriter(new FileWriter("inventoryReport.txt"));
 
             for (int i = 0; i < inv.names.size(); i++) {
-                out.printf("%s\t%d\t%.2f\n",
+                out.printf("%s/%d/%.2f\n",
                         inv.names.get(i),
                         inv.amounts.get(i),
                         inv.prices.get(i));
