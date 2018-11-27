@@ -36,6 +36,10 @@ public class Customer
 
 				case 'C':
 					System.out.println("Transaction Canceled");
+					for(String s : Cart.items){
+						inv.amounts.set(inv.names.indexOf(s),
+								inv.amounts.get(inv.names.indexOf(s)) + 1);
+					}
 					return;
 				default:
 					System.out.println("Not a valid option");
