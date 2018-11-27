@@ -25,10 +25,9 @@ public class Customer
 					System.out.println(String.format("Total: %.2f", total));
 					break;
 				case 'P':
-					//pay(total); ??
-					break;
+					payBill(total);
+					return;
 				case 'C':
-					//cancel transaction
 					System.out.println("Transaction Canceled");
 					return;
 				default:
@@ -62,6 +61,17 @@ public class Customer
 			{
 				continue;
 			}
+		}
+	}
+
+	static void payBill(float total)
+	{
+		Scanner stdin = new Scanner(System.in);
+		System.out.println(String.format("Your total bill is: $%.2f", total));
+		System.out.print("How would you like to pay (card/cash): ");
+		if (stdin.nextLine().toUpperCase().equals("CASH"))
+		{
+			Payment.payWithCash(total);
 		}
 	}
 }

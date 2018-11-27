@@ -52,11 +52,6 @@ public class Inventory
 		return amounts.get(index);
 	}
 
-	public void restock()
-	{
-		// Ask manager what to restock
-	}
-
 	public String toString()
 	{
 		int num = 1;
